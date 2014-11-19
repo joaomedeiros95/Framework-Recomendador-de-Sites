@@ -1,17 +1,26 @@
 package Dados;
 
-import Entidades.Usuario;
 import Entidades.Venda;
 import java.util.ArrayList;
 
 public class VendaDAO implements Dados.IVendaDAO {
-
-	public ArrayList<Venda> getVendas(Usuario usuario) {
-		return null;
+        ArrayList<Venda> lista = new ArrayList();
+        Venda venda;
+        
+        public void setVendaList(ArrayList<Venda> lista){
+            this.lista = lista;
+        }
+        
+	public ArrayList<Venda> getVendas() {
+		return lista;
 	}
 
-	public void setVenda(Usuario usuario, Entidades.Produto produto) {
-
+	public void addVenda(Venda venda) {
+            this.lista.add(venda);
+	}
+        
+        public void removeVenda(Venda venda) {
+            this.lista.remove(venda);
 	}
 
 }
