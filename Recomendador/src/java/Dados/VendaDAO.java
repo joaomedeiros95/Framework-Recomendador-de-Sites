@@ -7,7 +7,7 @@ public class VendaDAO implements Dados.IVendaDAO {
         ArrayList<Venda> lista = new ArrayList();
         Venda venda;
         
-        public void setVendaList(ArrayList<Venda> lista){
+        public void setVenda(ArrayList<Venda> lista){
             this.lista = lista;
         }
         
