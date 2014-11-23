@@ -12,7 +12,7 @@ public class Algoritmo1 extends Negócio.ServiçoDeRecomendacao {
     private Map mapa = new HashMap();
     
     String[] chaves = new String[1000];
-    Integer[] valores = new Integer[1000];
+    int[] valores = new int[1000];
     
     public Algoritmo1(ArrayList<Venda> lista){
         this.lista = lista;
@@ -29,10 +29,10 @@ public class Algoritmo1 extends Negócio.ServiçoDeRecomendacao {
         }
         
         //preenche 2 arrays com o nome da classe e a quantidade
-        ArrayList produtosPassados = new ArrayList();
+        ArrayList<String> produtosPassados = new ArrayList();
         for(int i = 0;i < ListaDeProdutos.size();i++){
             int cont = 0;
-            if(!produtosPassados.contains(ListaDeProdutos.get(i))){
+            if(!produtosPassados.contains(ListaDeProdutos.get(i).toString())){
                 for(int j = i;j < ListaDeProdutos.size();j++){
                         if(ListaDeProdutos.get(i).toString().equals(ListaDeProdutos.get(j).toString())){
                         cont++;
@@ -42,16 +42,14 @@ public class Algoritmo1 extends Negócio.ServiçoDeRecomendacao {
                 produtosPassados.add(ListaDeProdutos.get(i).toString());
                 chaves[i] = ListaDeProdutos.get(i).toString();
                 valores[i] = cont;
-                System.out.println(chaves[i]+" / "+valores[i]);
+                System.out.println(chaves[i]+" / "+valores[i]+" / "+ListaDeProdutos.size());
             }
         }
         
         //(ERRO) sort para organizar em ordem crescente
-        for(int i =0;i < produtosPassados.size();i++){
-            for(int j = i;j < produtosPassados.size();j++){
-                System.out.println(i+" / "+j+" - "+produtosPassados.size());
-                    System.out.println(valores[i]+" "+valores[j]);
-                    
+        for(int i =0;i < chaves.length;i++){
+            for(int j = i;j < chaves.length;j++){
+                if(chaves[i] != null || chaves[j] != null){
                     if(valores[i] < valores[j]){
                         Integer aux = valores[i];
                         valores[i] = valores[j];
@@ -61,14 +59,16 @@ public class Algoritmo1 extends Negócio.ServiçoDeRecomendacao {
                         chaves[i] = chaves[j];
                         chaves[j] = aux2;
                     }
+                } 
             }
         }
         
         //coloca tudo em um hashmap
-        for(int i = 0;i < produtosPassados.size();i++){
-            mapa.put(chaves[i], valores[i]);
+        for(int i = 0;i < chaves.length;i++){
+            if(chaves[i] != null){
+                mapa.put(chaves[i], valores[i]);
+            }
         }
-        
         System.out.println ("HashMap: " + mapa); 
     }
 
