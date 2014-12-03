@@ -1,19 +1,18 @@
 package negocio;
 
+import entidades.Produto;
+import entidades.Venda;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import entidades.Produto;
-import entidades.Venda;
 import excecoes.AcessoIlegalException;
 import excecoes.AtributoNaoExistenteException;
 
-public class Algoritmo2 extends ServicoDeRecomendacao {
-    
+public class Algoritmo2 extends negocio.ServicoDeRecomendacao {
+        
     private ArrayList<Venda> lista;
     private ArrayList listaDeAtributos = new ArrayList();
     
@@ -29,13 +28,26 @@ public class Algoritmo2 extends ServicoDeRecomendacao {
         this.atributo = atributo;
     }
 
-    @Override
     public String[] iniciarAlgoritmo() throws AtributoNaoExistenteException, AcessoIlegalException{
         Field[] f;
+        Field[] f2;
         for(Venda v : lista){
             for(Produto prod : v.getLista()){
                 f = prod.getClass().getDeclaredFields();
                 for(Field f1 : f){
+                    f1.setAccessible(true);
+                    if(f1.getName().equals(atributo)){
+                        try {
+                            listaDeAtributos.add(f1.get(prod));
+                        } catch (IllegalArgumentException ex) {
+                            throw new AtributoNaoExistenteException();
+                        } catch (IllegalAccessException ex) {
+                            throw new AcessoIlegalException();
+                        }
+                    }
+                }
+                f2 = prod.getClass().getSuperclass().getDeclaredFields();
+                for(Field f1 : f2){
                     f1.setAccessible(true);
                     if(f1.getName().equals(atributo)){
                         try {

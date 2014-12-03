@@ -6,8 +6,11 @@
 
 
 
+import hotspots.UsuarioPersonalizado;
+
 import java.util.Date;
 
+import apresentacao.FacedeBean;
 import negocio.ServicoDeRecomendacao;
 import dados.ProdutoDAO;
 import dados.UsuarioDAO;
@@ -24,24 +27,34 @@ public class teste {
     
     public static void main(String args[]){
         
-        ProdutoDAO p = new ProdutoDAO();
-        p.addProduto(new Produto(1, "produto1", (float) 1));
-        p.addProduto(new TV(1, "", (float)1));
-        p.addProduto(new TV(2, "", (float)1));
-        p.addProduto(new Notebook(3, "", (float) 1));
-        p.addProduto(new Livro(4, "", (float) 1));
-        
-        UsuarioDAO u = new UsuarioDAO();
-        u.addUsuario(new Usuario(1,"","","","","",""));
-        u.addUsuario(new UsuarioPersonalizado(1,"","","","","",""));
-        
-        VendaDAO v = new VendaDAO();
-        v.addVenda(new Venda(u.getUsuarios().get(0), p.getProdutos(), new Date()));
-        v.addVenda(new Venda(u.getUsuarios().get(0), p.getProdutos(), new Date()));
-        v.addVenda(new Venda(u.getUsuarios().get(0), p.getProdutos(), new Date()));
-        v.addVenda(new Venda(u.getUsuarios().get(0), p.getProdutos(), new Date()));
-        
-//        ServicoDeRecomendacao.realizar(ServicoDeRecomendacao.ALGORITMO1, v.getVendas(), "");
+//        ProdutoDAO p = new ProdutoDAO();
+//        p.addProduto(new Produto(1, "produto1", (float) 1));
+//        p.addProduto(new TV(1, "", (float)1));
+//        p.addProduto(new TV(2, "", (float)1));
+//        p.addProduto(new Notebook(3, "", (float) 1));
+//        p.addProduto(new Livro(4, "", (float) 1));
+//        
+//        UsuarioDAO u = new UsuarioDAO();
+//        u.addUsuario(new Usuario(1,"","","","","",""));
+//        u.addUsuario(new UsuarioPersonalizado(1,"","","","","",""));
+//        
+//        VendaDAO v = new VendaDAO();
+//        v.addVenda(new Venda(u.getUsuarios().get(0), p.getProdutos(), new Date()));
+//        v.addVenda(new Venda(u.getUsuarios().get(0), p.getProdutos(), new Date()));
+//        v.addVenda(new Venda(u.getUsuarios().get(0), p.getProdutos(), new Date()));
+//        v.addVenda(new Venda(u.getUsuarios().get(0), p.getProdutos(), new Date()));
+//        
+////        ServicoDeRecomendacao.realizar(ServicoDeRecomendacao.ALGORITMO1, v.getVendas(), "");
+    	
+//    	Usuario user = new UsuarioPersonalizado();
+//    	for(String atributo : user.getAtributos())
+//    		System.out.println(atributo);
+    	
+    	FacedeBean bean = new FacedeBean();
+    	for(String nome : bean.getAllClassNamesProduto()) {
+    		System.out.println(nome);
+    	}
+    	
     }
     
 }

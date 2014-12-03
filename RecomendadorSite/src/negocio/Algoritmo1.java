@@ -7,7 +7,7 @@ import java.util.Map;
 import entidades.Produto;
 import entidades.Venda;
 
-public class Algoritmo1 extends negocio.ServicoDeRecomendacao {
+public class Algoritmo1 extends ServicoDeRecomendacao {
     private ArrayList<Venda> lista;
     private ArrayList ListaDeProdutos = new ArrayList();
     private Map mapa = new HashMap();
@@ -70,7 +70,7 @@ public class Algoritmo1 extends negocio.ServicoDeRecomendacao {
                 mapa.put(chaves[i], valores[i]);
             }
         }
-        System.out.println ("HashMap: " + mapa);
+        System.out.println ("HashMap: " + mapa); 
         
         return chaves;
     }

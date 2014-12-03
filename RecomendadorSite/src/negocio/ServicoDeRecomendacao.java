@@ -37,7 +37,7 @@ public abstract class ServicoDeRecomendacao implements negocio.IServicoDeRecomen
 			servico = new Algoritmo2(vendas, atributo);
 			break;
 		case ALGORITMO3:
-			servico = new Algoritmo3();
+			servico = new Algoritmo3(vendas, atributo);
 			break;
 		default:
 			break;
